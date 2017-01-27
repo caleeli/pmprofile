@@ -78,11 +78,12 @@ class CasesGenerator
         return $randomString;
     }
 
-    function createCase()
+    function createCase($isLast)
     {
         $this->inserts++;
         if ($this->inserts >= static::LIMIT_INSERT_ROWS) $this->inserts = 0;
         $last = ($this->inserts + 1) >= static::LIMIT_INSERT_ROWS;
+        $last = $last || $isLast;
         $this->appUid = $this->generateUniqueID();
         $this->appNumber++;
         $this->appPin = $this->generateRandomString(4);
@@ -297,5 +298,5 @@ class CasesGenerator
 
 $cg = new CasesGenerator($argv[1], $argv[2]);
 for ($i = 0, $l = $argv[3] * 1; $i < $l; $i++) {
-    $cg->createCase();
+    $cg->createCase($i === $l-1);
 }
