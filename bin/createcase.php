@@ -250,31 +250,35 @@ class CasesGenerator
 
         //INSERT INTO `APPLICATION` (`APP_UID`, `APP_TITLE`, `APP_DESCRIPTION`, `APP_NUMBER`, `APP_PARENT`, `APP_STATUS`, `APP_STATUS_ID`, `PRO_UID`, `APP_PROC_STATUS`, `APP_PROC_CODE`, `APP_PARALLEL`, `APP_INIT_USER`, `APP_CUR_USER`, `APP_CREATE_DATE`, `APP_INIT_DATE`, `APP_FINISH_DATE`, `APP_UPDATE_DATE`, `APP_DATA`, `APP_PIN`, `APP_DURATION`, `APP_DELAY_DURATION`, `APP_DRIVE_FOLDER_UID`) VALUES
         if ($this->inserts == 0) {
-            fwrite($this->f1, "INSERT INTO `APPLICATION` (`APP_UID`, `APP_TITLE`, `APP_DESCRIPTION`, `APP_NUMBER`, `APP_PARENT`, `APP_STATUS`, `APP_STATUS_ID`, `PRO_UID`, `APP_PROC_STATUS`, `APP_PROC_CODE`, `APP_PARALLEL`, `APP_INIT_USER`, `APP_CUR_USER`, `APP_CREATE_DATE`, `APP_INIT_DATE`, `APP_FINISH_DATE`, `APP_UPDATE_DATE`, `APP_DATA`, `APP_PIN`, `APP_DURATION`, `APP_DELAY_DURATION`, `APP_DRIVE_FOLDER_UID`) VALUES\n");
+            fwrite($this->f1,
+                   "INSERT INTO `APPLICATION` (`APP_UID`, `APP_TITLE`, `APP_DESCRIPTION`, `APP_NUMBER`, `APP_PARENT`, `APP_STATUS`, `APP_STATUS_ID`, `PRO_UID`, `APP_PROC_STATUS`, `APP_PROC_CODE`, `APP_PARALLEL`, `APP_INIT_USER`, `APP_CUR_USER`, `APP_CREATE_DATE`, `APP_INIT_DATE`, `APP_FINISH_DATE`, `APP_UPDATE_DATE`, `APP_DATA`, `APP_PIN`, `APP_DURATION`, `APP_DELAY_DURATION`, `APP_DRIVE_FOLDER_UID`) VALUES\n");
         }
         fwrite($this->f1, '(');
         foreach ($application as $i => $val)
             fwrite($this->f1, ($i === 0 ? '' : ',').$this->escape($val));
-        fwrite($this->f1, ")" .($last ? ';' : ',') . "\n");
+        fwrite($this->f1, ")".($last ? ';' : ',')."\n");
         //INSERT INTO `APP_DELEGATION` (`APP_UID`, `DEL_INDEX`, `DELEGATION_ID`, `APP_NUMBER`, `DEL_PREVIOUS`, `DEL_LAST_INDEX`, `PRO_UID`, `TAS_UID`, `USR_UID`, `DEL_TYPE`, `DEL_THREAD`, `DEL_THREAD_STATUS`, `DEL_PRIORITY`, `DEL_DELEGATE_DATE`, `DEL_INIT_DATE`, `DEL_FINISH_DATE`, `DEL_TASK_DUE_DATE`, `DEL_RISK_DATE`, `DEL_DURATION`, `DEL_QUEUE_DURATION`, `DEL_DELAY_DURATION`, `DEL_STARTED`, `DEL_FINISHED`, `DEL_DELAYED`, `DEL_DATA`, `APP_OVERDUE_PERCENTAGE`, `USR_ID`, `PRO_ID`, `TAS_ID`) VALUES
         if ($this->inserts == 0) {
-            fwrite($this->f2, "INSERT INTO `APP_DELEGATION` (`APP_UID`, `DEL_INDEX`, `DELEGATION_ID`, `APP_NUMBER`, `DEL_PREVIOUS`, `DEL_LAST_INDEX`, `PRO_UID`, `TAS_UID`, `USR_UID`, `DEL_TYPE`, `DEL_THREAD`, `DEL_THREAD_STATUS`, `DEL_PRIORITY`, `DEL_DELEGATE_DATE`, `DEL_INIT_DATE`, `DEL_FINISH_DATE`, `DEL_TASK_DUE_DATE`, `DEL_RISK_DATE`, `DEL_DURATION`, `DEL_QUEUE_DURATION`, `DEL_DELAY_DURATION`, `DEL_STARTED`, `DEL_FINISHED`, `DEL_DELAYED`, `DEL_DATA`, `APP_OVERDUE_PERCENTAGE`, `USR_ID`, `PRO_ID`, `TAS_ID`) VALUES\n");
+            fwrite($this->f2,
+                   "INSERT INTO `APP_DELEGATION` (`APP_UID`, `DEL_INDEX`, `DELEGATION_ID`, `APP_NUMBER`, `DEL_PREVIOUS`, `DEL_LAST_INDEX`, `PRO_UID`, `TAS_UID`, `USR_UID`, `DEL_TYPE`, `DEL_THREAD`, `DEL_THREAD_STATUS`, `DEL_PRIORITY`, `DEL_DELEGATE_DATE`, `DEL_INIT_DATE`, `DEL_FINISH_DATE`, `DEL_TASK_DUE_DATE`, `DEL_RISK_DATE`, `DEL_DURATION`, `DEL_QUEUE_DURATION`, `DEL_DELAY_DURATION`, `DEL_STARTED`, `DEL_FINISHED`, `DEL_DELAYED`, `DEL_DATA`, `APP_OVERDUE_PERCENTAGE`, `USR_ID`, `PRO_ID`, `TAS_ID`) VALUES\n");
         }
         fwrite($this->f2, '(');
         foreach ($appDelegation as $i => $val)
             fwrite($this->f2, ($i === 0 ? '' : ',').$this->escape($val));
-        fwrite($this->f2, ")" . ($last ? ';' : ',') . "\n");
+        fwrite($this->f2, ")".($last ? ';' : ',')."\n");
         //INSERT INTO `APP_THREAD` (`APP_UID`, `APP_THREAD_INDEX`, `APP_THREAD_PARENT`, `APP_THREAD_STATUS`, `DEL_INDEX`, `APP_NUMBER`, `DELEGATION_ID`) VALUES
         if ($this->inserts == 0) {
-            fwrite($this->f3, "INSERT INTO `APP_THREAD` (`APP_UID`, `APP_THREAD_INDEX`, `APP_THREAD_PARENT`, `APP_THREAD_STATUS`, `DEL_INDEX`, `APP_NUMBER`, `DELEGATION_ID`) VALUES\n");
+            fwrite($this->f3,
+                   "INSERT INTO `APP_THREAD` (`APP_UID`, `APP_THREAD_INDEX`, `APP_THREAD_PARENT`, `APP_THREAD_STATUS`, `DEL_INDEX`, `APP_NUMBER`, `DELEGATION_ID`) VALUES\n");
         }
         fwrite($this->f3, '(');
         foreach ($appThread as $i => $val)
             fwrite($this->f3, ($i === 0 ? '' : ',').$this->escape($val));
-        fwrite($this->f3, ")" . ($last ? ';' : ',') . "\n");
+        fwrite($this->f3, ")".($last ? ';' : ',')."\n");
         //INSERT INTO `CONTENT` (`CON_CATEGORY`, `CON_PARENT`, `CON_ID`, `CON_LANG`, `CON_VALUE`) VALUES
         if ($this->inserts == 0) {
-            fwrite($this->f4, "INSERT INTO `CONTENT` (`CON_CATEGORY`, `CON_PARENT`, `CON_ID`, `CON_LANG`, `CON_VALUE`) VALUES\n");
+            fwrite($this->f4,
+                   "INSERT INTO `CONTENT` (`CON_CATEGORY`, `CON_PARENT`, `CON_ID`, `CON_LANG`, `CON_VALUE`) VALUES\n");
         }
         fwrite($this->f4, '(');
         foreach ($content1 as $i => $val)
@@ -283,23 +287,25 @@ class CasesGenerator
         fwrite($this->f4, '(');
         foreach ($content2 as $i => $val)
             fwrite($this->f4, ($i === 0 ? '' : ',').$this->escape($val));
-        fwrite($this->f4, ")" . ($last ? ';' : ',') . "\n");
+        fwrite($this->f4, ")".($last ? ';' : ',')."\n");
         //INSERT INTO `LIST_PARTICIPATED_HISTORY` (`APP_UID`, `DEL_INDEX`, `USR_UID`, `TAS_UID`, `PRO_UID`, `APP_NUMBER`, `APP_TITLE`, `APP_PRO_TITLE`, `APP_TAS_TITLE`, `DEL_PREVIOUS_USR_UID`, `DEL_PREVIOUS_USR_USERNAME`, `DEL_PREVIOUS_USR_FIRSTNAME`, `DEL_PREVIOUS_USR_LASTNAME`, `DEL_CURRENT_USR_USERNAME`, `DEL_CURRENT_USR_FIRSTNAME`, `DEL_CURRENT_USR_LASTNAME`, `DEL_DELEGATE_DATE`, `DEL_INIT_DATE`, `DEL_DUE_DATE`, `DEL_PRIORITY`) VALUES
         if ($this->inserts == 0) {
-            fwrite($this->f5, "INSERT INTO `LIST_PARTICIPATED_HISTORY` (`APP_UID`, `DEL_INDEX`, `USR_UID`, `TAS_UID`, `PRO_UID`, `APP_NUMBER`, `APP_TITLE`, `APP_PRO_TITLE`, `APP_TAS_TITLE`, `DEL_PREVIOUS_USR_UID`, `DEL_PREVIOUS_USR_USERNAME`, `DEL_PREVIOUS_USR_FIRSTNAME`, `DEL_PREVIOUS_USR_LASTNAME`, `DEL_CURRENT_USR_USERNAME`, `DEL_CURRENT_USR_FIRSTNAME`, `DEL_CURRENT_USR_LASTNAME`, `DEL_DELEGATE_DATE`, `DEL_INIT_DATE`, `DEL_DUE_DATE`, `DEL_PRIORITY`) VALUES\n");
+            fwrite($this->f5,
+                   "INSERT INTO `LIST_PARTICIPATED_HISTORY` (`APP_UID`, `DEL_INDEX`, `USR_UID`, `TAS_UID`, `PRO_UID`, `APP_NUMBER`, `APP_TITLE`, `APP_PRO_TITLE`, `APP_TAS_TITLE`, `DEL_PREVIOUS_USR_UID`, `DEL_PREVIOUS_USR_USERNAME`, `DEL_PREVIOUS_USR_FIRSTNAME`, `DEL_PREVIOUS_USR_LASTNAME`, `DEL_CURRENT_USR_USERNAME`, `DEL_CURRENT_USR_FIRSTNAME`, `DEL_CURRENT_USR_LASTNAME`, `DEL_DELEGATE_DATE`, `DEL_INIT_DATE`, `DEL_DUE_DATE`, `DEL_PRIORITY`) VALUES\n");
         }
         fwrite($this->f5, '(');
         foreach ($listParticipatedHistory as $i => $val)
             fwrite($this->f5, ($i === 0 ? '' : ',').$this->escape($val));
-        fwrite($this->f5, ")" . ($last ? ';' : ',') . "\n");
+        fwrite($this->f5, ")".($last ? ';' : ',')."\n");
         //INSERT INTO `LIST_PARTICIPATED_LAST` (`APP_UID`, `USR_UID`, `DEL_INDEX`, `TAS_UID`, `PRO_UID`, `APP_NUMBER`, `APP_TITLE`, `APP_PRO_TITLE`, `APP_TAS_TITLE`, `APP_STATUS`, `DEL_PREVIOUS_USR_UID`, `DEL_PREVIOUS_USR_USERNAME`, `DEL_PREVIOUS_USR_FIRSTNAME`, `DEL_PREVIOUS_USR_LASTNAME`, `DEL_CURRENT_USR_USERNAME`, `DEL_CURRENT_USR_FIRSTNAME`, `DEL_CURRENT_USR_LASTNAME`, `DEL_CURRENT_TAS_TITLE`, `DEL_DELEGATE_DATE`, `DEL_INIT_DATE`, `DEL_DUE_DATE`, `DEL_PRIORITY`, `DEL_THREAD_STATUS`) VALUES
         if ($this->inserts == 0) {
-            fwrite($this->f6, "INSERT INTO `LIST_PARTICIPATED_LAST` (`APP_UID`, `USR_UID`, `DEL_INDEX`, `TAS_UID`, `PRO_UID`, `APP_NUMBER`, `APP_TITLE`, `APP_PRO_TITLE`, `APP_TAS_TITLE`, `APP_STATUS`, `DEL_PREVIOUS_USR_UID`, `DEL_PREVIOUS_USR_USERNAME`, `DEL_PREVIOUS_USR_FIRSTNAME`, `DEL_PREVIOUS_USR_LASTNAME`, `DEL_CURRENT_USR_USERNAME`, `DEL_CURRENT_USR_FIRSTNAME`, `DEL_CURRENT_USR_LASTNAME`, `DEL_CURRENT_TAS_TITLE`, `DEL_DELEGATE_DATE`, `DEL_INIT_DATE`, `DEL_DUE_DATE`, `DEL_PRIORITY`, `DEL_THREAD_STATUS`) VALUES\n");
+            fwrite($this->f6,
+                   "INSERT INTO `LIST_PARTICIPATED_LAST` (`APP_UID`, `USR_UID`, `DEL_INDEX`, `TAS_UID`, `PRO_UID`, `APP_NUMBER`, `APP_TITLE`, `APP_PRO_TITLE`, `APP_TAS_TITLE`, `APP_STATUS`, `DEL_PREVIOUS_USR_UID`, `DEL_PREVIOUS_USR_USERNAME`, `DEL_PREVIOUS_USR_FIRSTNAME`, `DEL_PREVIOUS_USR_LASTNAME`, `DEL_CURRENT_USR_USERNAME`, `DEL_CURRENT_USR_FIRSTNAME`, `DEL_CURRENT_USR_LASTNAME`, `DEL_CURRENT_TAS_TITLE`, `DEL_DELEGATE_DATE`, `DEL_INIT_DATE`, `DEL_DUE_DATE`, `DEL_PRIORITY`, `DEL_THREAD_STATUS`) VALUES\n");
         }
         fwrite($this->f6, '(');
         foreach ($listParticipatedLast as $i => $val)
             fwrite($this->f6, ($i === 0 ? '' : ',').$this->escape($val));
-        fwrite($this->f6, ")" . ($last ? ';' : ',') . "\n");
+        fwrite($this->f6, ")".($last ? ';' : ',')."\n");
     }
 
     function escape($value)
@@ -313,4 +319,6 @@ class CasesGenerator
 }
 
 $cg = new CasesGenerator($argv[1], $argv[2]);
-$cg->createCase();
+for ($i = 0, $l = $argv[3] * 1; $i < $l; $i++) {
+    $cg->createCase();
+}
