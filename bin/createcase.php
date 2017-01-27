@@ -1,9 +1,10 @@
 <?php
 require './fixTimeZone.php';
+set_time_limit(-1);
 
 class CasesGenerator
 {
-    const LIMIT_INSERT_ROWS = 100;
+    const LIMIT_INSERT_ROWS = 200;
 
     public $proUid = '9388875235852ac30cbf367053242568';
     public $tasUid = '26948945158764ccf716d86083238937';
