@@ -271,7 +271,7 @@ class CasesGenerator
         fwrite($this->f3, '(');
         foreach ($appThread as $i => $val)
             fwrite($this->f3, ($i === 0 ? '' : ',').$this->escape($val));
-        fwrite($this->f3, ")", $last ? ';' : ',', "\n");
+        fwrite($this->f3, ")" . ($last ? ';' : ',') . "\n");
         //INSERT INTO `CONTENT` (`CON_CATEGORY`, `CON_PARENT`, `CON_ID`, `CON_LANG`, `CON_VALUE`) VALUES
         if ($this->inserts == 0) {
             fwrite($this->f4, "INSERT INTO `CONTENT` (`CON_CATEGORY`, `CON_PARENT`, `CON_ID`, `CON_LANG`, `CON_VALUE`) VALUES\n");
@@ -291,7 +291,7 @@ class CasesGenerator
         fwrite($this->f5, '(');
         foreach ($listParticipatedHistory as $i => $val)
             fwrite($this->f5, ($i === 0 ? '' : ',').$this->escape($val));
-        fwrite($this->f5, ")", $last ? ';' : ',', "\n");
+        fwrite($this->f5, ")" . ($last ? ';' : ',') . "\n");
         //INSERT INTO `LIST_PARTICIPATED_LAST` (`APP_UID`, `USR_UID`, `DEL_INDEX`, `TAS_UID`, `PRO_UID`, `APP_NUMBER`, `APP_TITLE`, `APP_PRO_TITLE`, `APP_TAS_TITLE`, `APP_STATUS`, `DEL_PREVIOUS_USR_UID`, `DEL_PREVIOUS_USR_USERNAME`, `DEL_PREVIOUS_USR_FIRSTNAME`, `DEL_PREVIOUS_USR_LASTNAME`, `DEL_CURRENT_USR_USERNAME`, `DEL_CURRENT_USR_FIRSTNAME`, `DEL_CURRENT_USR_LASTNAME`, `DEL_CURRENT_TAS_TITLE`, `DEL_DELEGATE_DATE`, `DEL_INIT_DATE`, `DEL_DUE_DATE`, `DEL_PRIORITY`, `DEL_THREAD_STATUS`) VALUES
         if ($this->inserts == 0) {
             fwrite($this->f6, "INSERT INTO `LIST_PARTICIPATED_LAST` (`APP_UID`, `USR_UID`, `DEL_INDEX`, `TAS_UID`, `PRO_UID`, `APP_NUMBER`, `APP_TITLE`, `APP_PRO_TITLE`, `APP_TAS_TITLE`, `APP_STATUS`, `DEL_PREVIOUS_USR_UID`, `DEL_PREVIOUS_USR_USERNAME`, `DEL_PREVIOUS_USR_FIRSTNAME`, `DEL_PREVIOUS_USR_LASTNAME`, `DEL_CURRENT_USR_USERNAME`, `DEL_CURRENT_USR_FIRSTNAME`, `DEL_CURRENT_USR_LASTNAME`, `DEL_CURRENT_TAS_TITLE`, `DEL_DELEGATE_DATE`, `DEL_INIT_DATE`, `DEL_DUE_DATE`, `DEL_PRIORITY`, `DEL_THREAD_STATUS`) VALUES\n");
