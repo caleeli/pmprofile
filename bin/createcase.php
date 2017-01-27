@@ -44,11 +44,17 @@ class CasesGenerator
         fclose($this->f5);
         fclose($this->f6);
         readfile($this->filename1);
+        unlink($this->filename1);
         readfile($this->filename2);
+        unlink($this->filename2);
         readfile($this->filename3);
+        unlink($this->filename3);
         readfile($this->filename4);
+        unlink($this->filename4);
         readfile($this->filename5);
+        unlink($this->filename5);
         readfile($this->filename6);
+        unlink($this->filename6);
     }
 
     /**
