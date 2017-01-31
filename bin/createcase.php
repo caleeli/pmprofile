@@ -232,6 +232,23 @@ class CasesGenerator
             '3',
             'CLOSED'
         );
+        $listCompleted = array(
+            $this->appUid,
+            $this->usrUid,
+            $this->tasUid,
+            $this->proUid,
+            $this->appNumber,
+            '#'.$this->appNumber,
+            'Test',
+            'Task 1',
+            Date('Y-m-d H:i:s'),
+            Date('Y-m-d H:i:s'),
+            1,
+            '',
+            'admin',
+            'Administrator',
+            'admin'
+        );
 
         //INSERT INTO `APPLICATION` (`APP_UID`, `APP_TITLE`, `APP_DESCRIPTION`, `APP_NUMBER`, `APP_PARENT`, `APP_STATUS`, `APP_STATUS_ID`, `PRO_UID`, `APP_PROC_STATUS`, `APP_PROC_CODE`, `APP_PARALLEL`, `APP_INIT_USER`, `APP_CUR_USER`, `APP_CREATE_DATE`, `APP_INIT_DATE`, `APP_FINISH_DATE`, `APP_UPDATE_DATE`, `APP_DATA`, `APP_PIN`, `APP_DURATION`, `APP_DELAY_DURATION`, `APP_DRIVE_FOLDER_UID`) VALUES
         if ($this->inserts == 0) {
@@ -289,6 +306,15 @@ class CasesGenerator
         }
         fwrite($this->f6, '(');
         foreach ($listParticipatedLast as $i => $val)
+            fwrite($this->f6, ($i === 0 ? '' : ',').$this->escape($val));
+        fwrite($this->f6, ")".($last ? ';' : ',')."\n");
+        //INSERT INTO `LIST_COMPLETED` (`APP_UID`, `USR_UID`, `TAS_UID`, `PRO_UID`, `APP_NUMBER`, `APP_TITLE`, `APP_PRO_TITLE`, `APP_TAS_TITLE`, `APP_CREATE_DATE`, `APP_FINISH_DATE`, `DEL_INDEX`, `DEL_PREVIOUS_USR_UID`, `DEL_CURRENT_USR_USERNAME`, `DEL_CURRENT_USR_FIRSTNAME`, `DEL_CURRENT_USR_LASTNAME`) VALUES
+        if ($this->inserts == 0) {
+            fwrite($this->f7,
+                   "INSERT INTO `LIST_COMPLETED` (`APP_UID`, `USR_UID`, `TAS_UID`, `PRO_UID`, `APP_NUMBER`, `APP_TITLE`, `APP_PRO_TITLE`, `APP_TAS_TITLE`, `APP_CREATE_DATE`, `APP_FINISH_DATE`, `DEL_INDEX`, `DEL_PREVIOUS_USR_UID`, `DEL_CURRENT_USR_USERNAME`, `DEL_CURRENT_USR_FIRSTNAME`, `DEL_CURRENT_USR_LASTNAME`) VALUES\n");
+        }
+        fwrite($this->f6, '(');
+        foreach ($listCompleted as $i => $val)
             fwrite($this->f6, ($i === 0 ? '' : ',').$this->escape($val));
         fwrite($this->f6, ")".($last ? ';' : ',')."\n");
     }
