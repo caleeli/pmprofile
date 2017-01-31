@@ -28,12 +28,14 @@ class CasesGenerator
         $this->filename4 = uniqid("createcase");
         $this->filename5 = uniqid("createcase");
         $this->filename6 = uniqid("createcase");
+        $this->filename7 = uniqid("createcase");
         $this->f1 = fopen($this->filename1, 'w');
         $this->f2 = fopen($this->filename2, 'w');
         $this->f3 = fopen($this->filename3, 'w');
         $this->f4 = fopen($this->filename4, 'w');
         $this->f5 = fopen($this->filename5, 'w');
         $this->f6 = fopen($this->filename6, 'w');
+        $this->f7 = fopen($this->filename7, 'w');
     }
 
     public function __destruct()
@@ -44,6 +46,7 @@ class CasesGenerator
         fclose($this->f4);
         fclose($this->f5);
         fclose($this->f6);
+        fclose($this->f7);
         readfile($this->filename1);
         unlink($this->filename1);
         readfile($this->filename2);
@@ -56,6 +59,8 @@ class CasesGenerator
         unlink($this->filename5);
         readfile($this->filename6);
         unlink($this->filename6);
+        readfile($this->filename7);
+        unlink($this->filename7);
     }
 
     /**
@@ -313,10 +318,10 @@ class CasesGenerator
             fwrite($this->f7,
                    "INSERT INTO `LIST_COMPLETED` (`APP_UID`, `USR_UID`, `TAS_UID`, `PRO_UID`, `APP_NUMBER`, `APP_TITLE`, `APP_PRO_TITLE`, `APP_TAS_TITLE`, `APP_CREATE_DATE`, `APP_FINISH_DATE`, `DEL_INDEX`, `DEL_PREVIOUS_USR_UID`, `DEL_CURRENT_USR_USERNAME`, `DEL_CURRENT_USR_FIRSTNAME`, `DEL_CURRENT_USR_LASTNAME`) VALUES\n");
         }
-        fwrite($this->f6, '(');
+        fwrite($this->f7, '(');
         foreach ($listCompleted as $i => $val)
-            fwrite($this->f6, ($i === 0 ? '' : ',').$this->escape($val));
-        fwrite($this->f6, ")".($last ? ';' : ',')."\n");
+            fwrite($this->f7, ($i === 0 ? '' : ',').$this->escape($val));
+        fwrite($this->f7, ")".($last ? ';' : ',')."\n");
     }
 
     function escape($value)
