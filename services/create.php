@@ -6,7 +6,7 @@ set_time_limit(-1);
 //print_r(executeQuery('select PRO_UID, TAS_UID from TASK where TAS_START="TRUE"'));
 for ($i = 0, $l = empty($_GET['c']) ? 1 : $_GET['c'] * 1; $i < $l; $i++) {
     $newCaseId = PMFNewCase($processId, $userId, $taskId, $variables);
-    $n = rand(1,4);
+    $n = 1;//rand(1,4);
     switch ($n) {
 	    case 1: //Todo
 	    	PMFDerivateCase($newCaseId, 1);
