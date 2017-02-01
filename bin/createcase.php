@@ -4,7 +4,7 @@ set_time_limit(-1);
 
 class CasesGenerator
 {
-    const LIMIT_INSERT_ROWS = 200;
+    const LIMIT_INSERT_ROWS = 1200;
 
     public $proUid = '9388875235852ac30cbf367053242568';
     public $tasUid = '26948945158764ccf716d86083238937';
@@ -29,6 +29,7 @@ class CasesGenerator
         $this->filename5 = uniqid("createcase");
         $this->filename6 = uniqid("createcase");
         $this->filename7 = uniqid("createcase");
+        $this->filename8 = uniqid("createcase");
         $this->f1 = fopen($this->filename1, 'w');
         $this->f2 = fopen($this->filename2, 'w');
         $this->f3 = fopen($this->filename3, 'w');
@@ -36,6 +37,7 @@ class CasesGenerator
         $this->f5 = fopen($this->filename5, 'w');
         $this->f6 = fopen($this->filename6, 'w');
         $this->f7 = fopen($this->filename7, 'w');
+        $this->f8 = fopen($this->filename8, 'w');
     }
 
     public function __destruct()
@@ -47,6 +49,7 @@ class CasesGenerator
         fclose($this->f5);
         fclose($this->f6);
         fclose($this->f7);
+        fclose($this->f8);
         readfile($this->filename1);
         unlink($this->filename1);
         readfile($this->filename2);
@@ -61,6 +64,8 @@ class CasesGenerator
         unlink($this->filename6);
         readfile($this->filename7);
         unlink($this->filename7);
+        readfile($this->filename8);
+        unlink($this->filename8);
     }
 
     /**
@@ -254,6 +259,40 @@ class CasesGenerator
             'Administrator',
             'admin'
         );
+        $appCacheView = array(
+            $this->appUid,
+            1,
+            1,
+            $this->appNumber,
+            'COMPLETED',
+            $this->usrUid,
+            '',
+            $this->tasUid,
+            $this->proUid,
+            Date('Y-m-d H:i:s'),
+            Date('Y-m-d H:i:s'),
+            Date('Y-m-d H:i:s'),
+            Date('Y-m-d H:i:s'),
+            Date('Y-m-d H:i:s'),
+            'CLOSED',
+            'OPEN',
+            '#'.$this->appNumber,
+            'Test',
+            'Task 1',
+            'admin Administrator',
+            '',
+            '3',
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            Date('Y-m-d H:i:s'),
+            Date('Y-m-d H:i:s'),
+            Date('Y-m-d H:i:s'),
+            0
+        );
 
         //INSERT INTO `APPLICATION` (`APP_UID`, `APP_TITLE`, `APP_DESCRIPTION`, `APP_NUMBER`, `APP_PARENT`, `APP_STATUS`, `APP_STATUS_ID`, `PRO_UID`, `APP_PROC_STATUS`, `APP_PROC_CODE`, `APP_PARALLEL`, `APP_INIT_USER`, `APP_CUR_USER`, `APP_CREATE_DATE`, `APP_INIT_DATE`, `APP_FINISH_DATE`, `APP_UPDATE_DATE`, `APP_DATA`, `APP_PIN`, `APP_DURATION`, `APP_DELAY_DURATION`, `APP_DRIVE_FOLDER_UID`) VALUES
         if ($this->inserts == 0) {
@@ -322,6 +361,16 @@ class CasesGenerator
         foreach ($listCompleted as $i => $val)
             fwrite($this->f7, ($i === 0 ? '' : ',').$this->escape($val));
         fwrite($this->f7, ")".($last ? ';' : ',')."\n");
+        //INSERT INTO `APP_CACHE_VIEW` (`APP_UID`, `DEL_INDEX`, `DEL_LAST_INDEX`, `APP_NUMBER`, `APP_STATUS`, `USR_UID`, `PREVIOUS_USR_UID`, `TAS_UID`, `PRO_UID`, `DEL_DELEGATE_DATE`, `DEL_INIT_DATE`, `DEL_FINISH_DATE`, `DEL_TASK_DUE_DATE`, `DEL_RISK_DATE`, `DEL_THREAD_STATUS`, `APP_THREAD_STATUS`, `APP_TITLE`, `APP_PRO_TITLE`, `APP_TAS_TITLE`, `APP_CURRENT_USER`, `APP_DEL_PREVIOUS_USER`, `DEL_PRIORITY`, `DEL_DURATION`, `DEL_QUEUE_DURATION`, `DEL_DELAY_DURATION`, `DEL_STARTED`, `DEL_FINISHED`, `DEL_DELAYED`, `APP_CREATE_DATE`, `APP_FINISH_DATE`, `APP_UPDATE_DATE`, `APP_OVERDUE_PERCENTAGE`) VALUES
+        if ($this->inserts == 0) {
+            fwrite($this->f8,
+                   "INSERT INTO `APP_CACHE_VIEW` (`APP_UID`, `DEL_INDEX`, `DEL_LAST_INDEX`, `APP_NUMBER`, `APP_STATUS`, `USR_UID`, `PREVIOUS_USR_UID`, `TAS_UID`, `PRO_UID`, `DEL_DELEGATE_DATE`, `DEL_INIT_DATE`, `DEL_FINISH_DATE`, `DEL_TASK_DUE_DATE`, `DEL_RISK_DATE`, `DEL_THREAD_STATUS`, `APP_THREAD_STATUS`, `APP_TITLE`, `APP_PRO_TITLE`, `APP_TAS_TITLE`, `APP_CURRENT_USER`, `APP_DEL_PREVIOUS_USER`, `DEL_PRIORITY`, `DEL_DURATION`, `DEL_QUEUE_DURATION`, `DEL_DELAY_DURATION`, `DEL_STARTED`, `DEL_FINISHED`, `DEL_DELAYED`, `APP_CREATE_DATE`, `APP_FINISH_DATE`, `APP_UPDATE_DATE`, `APP_OVERDUE_PERCENTAGE`) VALUES\n");
+        }
+        fwrite($this->f8, '(');
+        foreach ($listCompleted as $i => $val)
+            fwrite($this->f8, ($i === 0 ? '' : ',').$this->escape($val));
+        fwrite($this->f8, ")".($last ? ';' : ',')."\n");
+
     }
 
     function escape($value)
