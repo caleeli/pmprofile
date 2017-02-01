@@ -367,7 +367,7 @@ class CasesGenerator
                    "INSERT INTO `APP_CACHE_VIEW` (`APP_UID`, `DEL_INDEX`, `DEL_LAST_INDEX`, `APP_NUMBER`, `APP_STATUS`, `USR_UID`, `PREVIOUS_USR_UID`, `TAS_UID`, `PRO_UID`, `DEL_DELEGATE_DATE`, `DEL_INIT_DATE`, `DEL_FINISH_DATE`, `DEL_TASK_DUE_DATE`, `DEL_RISK_DATE`, `DEL_THREAD_STATUS`, `APP_THREAD_STATUS`, `APP_TITLE`, `APP_PRO_TITLE`, `APP_TAS_TITLE`, `APP_CURRENT_USER`, `APP_DEL_PREVIOUS_USER`, `DEL_PRIORITY`, `DEL_DURATION`, `DEL_QUEUE_DURATION`, `DEL_DELAY_DURATION`, `DEL_STARTED`, `DEL_FINISHED`, `DEL_DELAYED`, `APP_CREATE_DATE`, `APP_FINISH_DATE`, `APP_UPDATE_DATE`, `APP_OVERDUE_PERCENTAGE`) VALUES\n");
         }
         fwrite($this->f8, '(');
-        foreach ($listCompleted as $i => $val)
+        foreach ($appCacheView as $i => $val)
             fwrite($this->f8, ($i === 0 ? '' : ',').$this->escape($val));
         fwrite($this->f8, ")".($last ? ';' : ',')."\n");
 
