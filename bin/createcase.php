@@ -103,6 +103,7 @@ class CasesGenerator
         $last = $last || $isLast;
         $this->appUid = $this->generateUniqueID();
         $this->appNumber++;
+        $this->delId = $this->appNumber + 105623 + 50;
         $this->appPin = $this->generateRandomString(4);
         $appData = array(
             'SYS_LANG'     => 'en',
@@ -144,7 +145,7 @@ class CasesGenerator
         $appDelegation = array(
             $this->appUid,
             1,
-            $this->appNumber, //autoinc
+            $this->delId, //autoinc
             $this->appNumber,
             0,
             1,
