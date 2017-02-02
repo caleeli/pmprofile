@@ -18,7 +18,8 @@ function doQuery($SqlStatement, $count, $DBConnectionUID = 'workflow')
 }
 //SET SESSION query_cache_type=0;
 //,NOW()
-$sql = "SELECT SQL_NO_CACHE
+$sql = "SELECT
+    NOW(),
     APP_NUMBER,
     APP_TITLE,
     APP_PRO_TITLE,
