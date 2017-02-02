@@ -58,4 +58,4 @@ $sql = empty($_GET['sql']) ? $sqlBase : $_GET['sql'];
     $res = doQuery($sql, 30);
     $time = (microtime(true) - $t) * 1000;
 
-    var_dump($sql, $time, $res);
+    var_dump($time, $res);
