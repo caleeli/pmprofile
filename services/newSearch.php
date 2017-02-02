@@ -16,6 +16,8 @@ function doQuery($SqlStatement, $count, $DBConnectionUID = 'workflow')
     }
     return $result;
 }
+//SET SESSION query_cache_type=0;
+//,NOW()
 $sql = "SELECT SQL_NO_CACHE
     APP_NUMBER,
     APP_TITLE,
@@ -40,7 +42,7 @@ WHERE
   )
   AND DEL_DELEGATE_DATE >= '2017-01-01 00:00:00'
   AND DEL_DELEGATE_DATE <= '2017-12-01 00:00:00'
-ORDER BY APP_NUMBER DESC
+ORDER BY APP_NUMBER ASC
 LIMIT 1, 30 ";
 
 $t = microtime(true);
