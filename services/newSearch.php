@@ -1,6 +1,5 @@
-<form method="GET">
-    <textarea name="sql" cols="80" rows="25">
-SELECT
+<?php
+$sqlBase = "SELECT
     NOW(),
     APP_NUMBER,
     APP_TITLE,
@@ -27,7 +26,11 @@ WHERE
   AND DEL_DELEGATE_DATE <= '2017-12-01 00:00:00'
 ORDER BY APP_NUMBER ASC
 LIMIT 31, 30
-    </textarea>
+";
+$sql = empty($_GET['sql']) ? $sqlBase : $_GET['sql'];
+?>
+<form method="GET">
+    <textarea name="sql" cols="80" rows="25"><?= $sql ?></textarea>
     <button>submit</button>
 </form>
 <pre>
@@ -50,8 +53,6 @@ LIMIT 31, 30
     }
 //SET SESSION query_cache_type=0;
 //,NOW()
-    if(empty($_GET['sql'])) return;
-    $sql = $_GET['sql'];
 
     $t = microtime(true);
     $res = doQuery($sql, 30);
