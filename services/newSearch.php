@@ -1,3 +1,4 @@
+<pre>
 <?php
 session_write_close();
 G::LoadClass('pmFunctions');
@@ -36,4 +37,4 @@ $t = microtime(true);
 $res = doQuery($sql, 30);
 $time = (microtime(true)-$t)*1000;
 
-var_dump($time, $res);
+var_dump($sql, $time, $res);
