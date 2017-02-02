@@ -1,24 +1,6 @@
-<pre>
-<?php
-session_write_close();
-G::LoadClass('pmFunctions');
-require 'env.php';
-
-function doQuery($SqlStatement, $count, $DBConnectionUID = 'workflow')
-{
-    $con = Propel::getConnection($DBConnectionUID);
-    $rs = $con->executeQuery($SqlStatement);
-
-    $result = Array();
-    for ($i = 0; $i < $count; $i++) {
-        if (!$rs->next()) break;
-        $result[] = $rs->getRow();
-    }
-    return $result;
-}
-//SET SESSION query_cache_type=0;
-//,NOW()
-$sql = "SELECT
+<form method="GET">
+    <textarea name="sql">
+SELECT
     NOW(),
     APP_NUMBER,
     APP_TITLE,
@@ -44,10 +26,34 @@ WHERE
   AND DEL_DELEGATE_DATE >= '2017-01-01 00:00:00'
   AND DEL_DELEGATE_DATE <= '2017-12-01 00:00:00'
 ORDER BY APP_NUMBER ASC
-LIMIT 31, 30 ";
+LIMIT 31, 30
+    </textarea>
+</form>
+<pre>
+    <?php
+    session_write_close();
+    G::LoadClass('pmFunctions');
+    require 'env.php';
 
-$t = microtime(true);
-$res = doQuery($sql, 30);
-$time = (microtime(true)-$t)*1000;
+    function doQuery($SqlStatement, $count, $DBConnectionUID = 'workflow')
+    {
+        $con = Propel::getConnection($DBConnectionUID);
+        $rs = $con->executeQuery($SqlStatement);
 
-var_dump($sql, $time, $res);
+        $result = Array();
+        for ($i = 0; $i < $count; $i++) {
+            if (!$rs->next()) break;
+            $result[] = $rs->getRow();
+        }
+        return $result;
+    }
+//SET SESSION query_cache_type=0;
+//,NOW()
+    if(empty($_GET['sql'])) return;
+    $sql = $_GET['sql'];
+
+    $t = microtime(true);
+    $res = doQuery($sql, 30);
+    $time = (microtime(true) - $t) * 1000;
+
+    var_dump($sql, $time, $res);
