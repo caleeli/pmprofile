@@ -44,7 +44,7 @@ WHERE
   AND DEL_DELEGATE_DATE >= '2017-01-01 00:00:00'
   AND DEL_DELEGATE_DATE <= '2017-12-01 00:00:00'
 ORDER BY APP_NUMBER ASC
-LIMIT 1, 30 ";
+LIMIT 31, 30 ";
 
 $t = microtime(true);
 $res = doQuery($sql, 30);
