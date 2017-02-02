@@ -31,7 +31,7 @@ WHERE
 LIMIT 0 , 30";
 
 $t = microtime(true);
-$res = doQuery($sql1, 30);
+$res = doQuery($sql, 30);
 $time = (microtime(true)-$t)*1000;
 
 var_dump($time, $res);
