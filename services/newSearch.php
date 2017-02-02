@@ -17,18 +17,7 @@ function doQuery($SqlStatement, $count, $DBConnectionUID = 'workflow')
 }
 $sql = "SELECT *
 FROM  `LIST_PARTICIPATED_HISTORY`
-WHERE
-  PRO_UID IN (SELECT PRO_UID FROM PROCESS WHERE )
-  AND USR_UID IN('00000000000000000000000000000001')
-  AND (
-      APP_TITLE LIKE '%Test%' OR
-      APP_PRO_TITLE LIKE '%Test%' OR
-      APP_TAS_TITLE LIKE '%Test%' OR
-      DEL_CURRENT_USR_USERNAME LIKE '%Test%' OR
-      DEL_CURRENT_USR_FIRSTNAME LIKE '%Test%' OR
-      DEL_CURRENT_USR_LASTNAME LIKE '%Test%'
-  )
-LIMIT 0 , 30";
+";
 
 $t = microtime(true);
 $res = doQuery($sql, 30);
