@@ -30,7 +30,7 @@ LIMIT 31, 30
 $sql = empty($_GET['sql']) ? $sqlBase : $_GET['sql'];
 ?>
 <form method="GET">
-    <textarea name="sql" cols="80" rows="25"><?= $sql ?></textarea>
+    <textarea name="sql" cols="160" rows="25"><?= $sql ?></textarea>
     <button>submit</button>
 </form>
 <pre>
