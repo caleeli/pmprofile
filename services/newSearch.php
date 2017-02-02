@@ -8,7 +8,7 @@ function doQuery($SqlStatement, $count, $DBConnectionUID = 'workflow')
 {
     $con = Propel::getConnection($DBConnectionUID);
     $rs = $con->executeQuery($SqlStatement);
-
+return;
     $result = Array();
     for ($i = 0; $i < $count; $i++) {
         if (!$rs->next()) break;
