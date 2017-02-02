@@ -1,5 +1,5 @@
 <form method="GET">
-    <textarea name="sql">
+    <textarea name="sql" cols="80" rows="25">
 SELECT
     NOW(),
     APP_NUMBER,
@@ -28,6 +28,7 @@ WHERE
 ORDER BY APP_NUMBER ASC
 LIMIT 31, 30
     </textarea>
+    <button>submit</button>
 </form>
 <pre>
     <?php
