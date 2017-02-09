@@ -4,10 +4,11 @@ G::LoadClass('pmFunctions');
 require 'env.php';
 $filter = [
     "            APP_DELEGATION.DEL_THREAD_STATUS='OPEN' AND",
-    "            APPLICATION.APP_TITLE LIKE '%Task%' AND",
+    "            APPLICATION.APP_TITLE LIKE '%#%' AND",
 ];
 $order = [
     "APPLICATION.APP_NUMBER DESC",
+    "APPLICATION.APP_TITLE DESC"
 ];
 
 $sql = "SELECT
