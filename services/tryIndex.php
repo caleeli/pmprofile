@@ -67,7 +67,7 @@ foreach($filters as $f) {
                     APP_DELEGATION.DEL_LAST_INDEX = 1
                  ORDER BY ".implode(", ", $order)." LIMIT 25
         ";
-        echo "<hr><div style='background-color:lightblue;font-weight:bold;'>".$sql."</div><hr>";
+        echo "<hr><div style='background-color:lightgreen;font-weight:bold;'>".$sql."</div><hr>";
         executeQuery("SET GLOBAL query_cache_size = 0");
         echo "<table border='1'>";
             echo "<tr>";
