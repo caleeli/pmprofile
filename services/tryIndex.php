@@ -68,6 +68,7 @@ $aUser = [null, 1];
 $aDateFrom = [null, '1996-02-09T00:00:00'];
 $aDateTo = [null, '2018-02-09T00:00:00'];
 
+$f = fopen("./css/indexes.html", "w");
 foreach($aSort as $sort)
 foreach($aSearch as $search)
 foreach($aProcess as $process)
@@ -76,44 +77,47 @@ foreach($aFilterStatus as $filterStatus)
 foreach($aUser as $user)
 foreach($aDateFrom as $dateFrom)
 foreach($aDateTo as $dateTo) {
-    echo "<hr><div style='background-color:lightyellow;font-weight:bold;'>";
-    echo json_encode(array_combine(['$sort', '$search', '$process', '$category', '$filterStatus', '$user', '$dateFrom', '$dateTo'],
-        [$sort, $search, $process, $category, $filterStatus, $user, $dateFrom, $dateTo]));
-    echo "</div>";
+    fwrite($f,"<hr><div style='background-color:lightyellow;font-weight:bold;'>");
+    fwrite($f,json_encode(array_combine(['$sort', '$search', '$process', '$category', '$filterStatus', '$user', '$dateFrom', '$dateTo'],
+        [$sort, $search, $process, $category, $filterStatus, $user, $dateFrom, $dateTo])));
+    fwrite($f,"</div>");
     $sql = getAdvancedSearchQuery($sort, $search, $process, $category, $filterStatus, $user, $dateFrom, $dateTo);
-    echo "<hr><div style='background-color:lightgreen;font-weight:bold;'>".$sql."</div><hr>";
+    fwrite($f,"<hr><div style='background-color:lightgreen;font-weight:bold;'>".$sql."</div><hr>");
     analize($sql);
 }
+fclose($f);
+readfile("./css/indexes.html");
 
 function analize($sql) {
+    global $f;
         executeQuery("SET GLOBAL query_cache_size = 0");
-        echo "<table border='1'>";
-            echo "<tr>";
-            echo "<th>table</th>";
-            echo "<th>possible_keys</td>";
-            echo "<th>key</th>";
-            echo "<th>rows</th>";
-            echo "<th>joined</th>";
-            echo "</tr>";
+        fwrite($f,"<table border='1'>");
+            fwrite($f,"<tr>");
+            fwrite($f,"<th>table</th>");
+            fwrite($f,"<th>possible_keys</td>");
+            fwrite($f,"<th>key</th>");
+            fwrite($f,"<th>rows</th>");
+            fwrite($f,"<th>joined</th>");
+            fwrite($f,"</tr>");
         foreach(executeQuery("EXPLAIN EXTENDED ".$sql) as $row) {
-            echo "<tr style='".(!$row['key']?'background-color:red;color white;':'')."'>";
-            echo "<td>".$row['table']."</td>";
-            echo "<td>".$row['possible_keys']."</td>";
-            echo "<td>".$row['key']."</td>";
-            echo "<td>".$row['rows']."</td>";
-            echo "<td>".($row['rows']*$row['filtered']/100)."</td>";
-            echo "</tr>";
+            fwrite($f,"<tr style='".(!$row['key']?'background-color:red;color white;':'')."'>");
+            fwrite($f,"<td>".$row['table']."</td>");
+            fwrite($f,"<td>".$row['possible_keys']."</td>");
+            fwrite($f,"<td>".$row['key']."</td>");
+            fwrite($f,"<td>".$row['rows']."</td>");
+            fwrite($f,"<td>".($row['rows']*$row['filtered']/100)."</td>");
+            fwrite($f,"</tr>");
         }
-        echo "<table border='1'>";
+        fwrite($f, "<table border='1'>");
         foreach(executeQuery("SHOW WARNINGS") as $row) {
-            echo "<tr>";
-            echo "<th>".$row['Level']." (".$row['Level'].")</th>";
-            echo "</tr>";
-            echo "<tr>";
-            echo "<td>".strtoupper(str_replace('`'.DB_NAME.'`.','',$row['Message']))."</td>";
-            echo "</tr>";
+            fwrite($f,"<tr>");
+            fwrite($f,"<th>".$row['Level']." (".$row['Level'].")</th>");
+            fwrite($f,"</tr>");
+            fwrite($f,"<tr>");
+            fwrite($f,"<td>".strtoupper(str_replace('`'.DB_NAME.'`.','',$row['Message']))."</td>");
+            fwrite($f,"</tr>");
         }
-        echo "</table>";
+        fwrite($f, "</table>");
 }
 
 return;
