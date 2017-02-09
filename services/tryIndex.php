@@ -68,6 +68,7 @@ foreach($filters as $f) {
                  ORDER BY ".implode(", ", $order)." LIMIT 25
         ";
         echo "<hr><div style='background-color:lightgreen;font-weight:bold;'>".$sql."</div><hr>";
+        echo "<div style='background-color:lightyellow;font-weight:bold;'>".json_encode($filter).','.json_encode($order)."</div>";
         executeQuery("SET GLOBAL query_cache_size = 0");
         echo "<table border='1'>";
             echo "<tr>";
@@ -78,7 +79,7 @@ foreach($filters as $f) {
             echo "<th>joined</th>";
             echo "</tr>";
         foreach(executeQuery("EXPLAIN EXTENDED ".$sql) as $row) {
-            echo "<tr>";
+            echo "<tr style='".(!$row['key']?'background-color:red;color white;':'')."'>";
             echo "<td>".$row['table']."</td>";
             echo "<td>".$row['possible_keys']."</td>";
             echo "<td>".$row['key']."</td>";
