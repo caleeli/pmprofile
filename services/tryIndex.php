@@ -59,7 +59,7 @@ function getAdvancedSearchQuery($sort=null, $search=null, $process=null, $catego
     return $con_ro->lastQuery;
 }
 //
-$aSort = ['APP_NUMBER', 'APP_TITLE', 'APP_PRO_TITLE', 'APP_TAS_TITLE', 'APP_CURRENT_USER', 'APP_UPDATE_DATE', 'DEL_DELEGATE_DATE', 'DEL_TASK_DUE_DATE', 'APP_STATUS_LABEL'];
+$aSort = ['APP_NUMBER', 'APP_TITLE', 'APP_PRO_TITLE', 'APP_TAS_TITLE', /*'APP_CURRENT_USER',*/ 'APP_UPDATE_DATE', 'DEL_DELEGATE_DATE', 'DEL_TASK_DUE_DATE', 'APP_STATUS_LABEL'];
 $aSearch = [null, 'e'];
 $aProcess = [null, 2];
 $aCatagory = [null, '451007284589106bcb93dd4032868430'];
