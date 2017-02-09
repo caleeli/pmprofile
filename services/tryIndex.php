@@ -2,7 +2,26 @@
 session_write_close();
 G::LoadClass('pmFunctions');
 require 'env.php';
+require 'Log.php';
+
 set_time_limit(0);
+$name='workflow_ro';
+//$configuration['datasources'][$name]
+var_dump($c=Propel::getConfiguration());
+$c['datasources']['workflow_ro']=$c['datasources']['workflow'];
+if(DB_NAME==='wf_mellow') {
+    //$c['datasources']['workflow_ro']['connection'] = 'mysql://wf_5852ab279ab22:j01F9JPC*%f.s$Y@localhost/wf_mellow?encoding=utf8';
+} else {
+//    $c['datasources']['workflow_ro']['connection'] = 'mysql://wf_5852ab279ab22:j01F9JPC*%f.s$Y@localhost/wf_mellow?encoding=utf8';
+}
+//Creole::registerDriver( '*', 'creole.contrib.DebugConnection' );
+var_dump(Propel::initConfiguration($c));
+var_dump($c=Propel::getConfiguration(), DEBUG_SQL_LOG);
+$logger = Log::singleton( 'file', __FILE__.'.log');
+$con_ro = Propel::getConnection( 'workflow_ro' );
+var_dump(get_class($con_ro));
+var_dump($con_ro->lastQuery);
+
 $filters = [
     "            APP_DELEGATION.DEL_THREAD_STATUS='OPEN' AND",
     "            APP_DELEGATION.PRO_UID = '9388875235852ac30cbf367053242568' AND",
