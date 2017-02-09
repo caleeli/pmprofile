@@ -8,7 +8,7 @@ $filter = [
 $order = [
     "APPLICATION.APP_NUMBER DESC",
 ];
-
+var_dump(DB_NAME);
 $sql = "SELECT
                     STRAIGHT_JOIN APPLICATION.APP_NUMBER,
                     APPLICATION.APP_UID,
@@ -75,7 +75,7 @@ foreach(executeQuery("SHOW WARNINGS") as $row) {
     echo "<th>".$row['Level']." (".$row['Level'].")</th>";
     echo "</tr>";
     echo "<tr>";
-    echo "<td>".strtoupper($row['Message'])."</td>";
+    echo "<td>".strtoupper(str_replace('`'.DB_NAME.'`.','',$row['Message']))."</td>";
     echo "</tr>";
 }
 echo "</table>";
