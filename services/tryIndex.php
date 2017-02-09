@@ -12,7 +12,7 @@ $c['datasources']['workflow_ro']=$c['datasources']['workflow'];
 if(DB_NAME==='wf_mellow') {
     //$c['datasources']['workflow_ro']['connection'] = 'mysql://wf_5852ab279ab22:j01F9JPC*%f.s$Y@localhost/wf_mellow?encoding=utf8';
 } else {
-//    $c['datasources']['workflow_ro']['connection'] = 'mysql://wf_5852ab279ab22:j01F9JPC*%f.s$Y@localhost/wf_mellow?encoding=utf8';
+    $c['datasources']['workflow_ro']['connection'] = "mysql://wf_workflow:qpf2ygjdh5nm@benchmark-db-2.processmaker.net/wf_workflow?encoding=utf8";
 }
 //Creole::registerDriver( '*', 'creole.contrib.DebugConnection' );
 var_dump(Propel::initConfiguration($c));
