@@ -4,11 +4,12 @@ G::LoadClass('pmFunctions');
 require 'env.php';
 $filter = [
     "            APP_DELEGATION.DEL_THREAD_STATUS='OPEN' AND",
+    "            APPLICATION.APP_TITLE LIKE '%Task%' AND",
 ];
 $order = [
     "APPLICATION.APP_NUMBER DESC",
 ];
-var_dump(DB_NAME);
+
 $sql = "SELECT
                     STRAIGHT_JOIN APPLICATION.APP_NUMBER,
                     APPLICATION.APP_UID,
