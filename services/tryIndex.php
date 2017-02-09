@@ -9,7 +9,7 @@ $order = [
     "APPLICATION.APP_NUMBER DESC",
 ];
 
-$sql = "EXPLAIN EXTENDED SELECT
+$sql = "SELECT
                     STRAIGHT_JOIN APPLICATION.APP_NUMBER,
                     APPLICATION.APP_UID,
                     APPLICATION.APP_STATUS,
@@ -60,7 +60,7 @@ echo "<table border='1'>";
     echo "<th>rows</th>";
     echo "<th>joined</th>";
     echo "</tr>";
-foreach(executeQuery($sql) as $row) {
+foreach(executeQuery("EXPLAIN EXTENDED ".$sql) as $row) {
     echo "<tr>";
     echo "<td>".$row['table']."</td>";
     echo "<td>".$row['possible_keys']."</td>";
